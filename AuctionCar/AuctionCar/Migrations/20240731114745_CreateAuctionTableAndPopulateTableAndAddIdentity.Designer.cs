@@ -4,6 +4,7 @@ using AuctionCar.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuctionCar.Migrations
 {
     [DbContext(typeof(AuctionCarContext))]
-    partial class AuctionCarContextModelSnapshot : ModelSnapshot
+    [Migration("20240731114745_CreateAuctionTableAndPopulateTableAndAddIdentity")]
+    partial class CreateAuctionTableAndPopulateTableAndAddIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,33 +74,6 @@ namespace AuctionCar.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AuctionStatuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Status = "Active"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Status = "Inactive"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Status = "Suspended"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Status = "Closed"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Status = "Removed"
-                        });
                 });
 
             modelBuilder.Entity("AuctionCar.Models.Users.Buyer", b =>

@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AuctionCar.Models.Users
 {
     public class Buyer
     {
+
         [Key]
-        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         [Required]
@@ -33,6 +35,8 @@ namespace AuctionCar.Models.Users
 
         public DateTime ResetPasswordDate { get; set; }
 
+        public bool IsAdmin { get; set; } = false;
+
         public Buyer()
         {
             FirstName = string.Empty;
@@ -43,6 +47,7 @@ namespace AuctionCar.Models.Users
             SaltPassword = string.Empty;
             RegisteredDate = DateTime.UtcNow;
             ResetPasswordDate = DateTime.UtcNow.AddMonths(6);
+            
         }
     }
 

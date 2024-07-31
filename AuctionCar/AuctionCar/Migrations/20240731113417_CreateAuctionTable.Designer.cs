@@ -4,6 +4,7 @@ using AuctionCar.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuctionCar.Migrations
 {
     [DbContext(typeof(AuctionCarContext))]
-    partial class AuctionCarContextModelSnapshot : ModelSnapshot
+    [Migration("20240731113417_CreateAuctionTable")]
+    partial class CreateAuctionTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,58 +49,12 @@ namespace AuctionCar.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StatusId")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StatusId");
 
                     b.ToTable("Auctions");
-                });
-
-            modelBuilder.Entity("AuctionCar.Models.Auction.AuctionStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AuctionStatuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Status = "Active"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Status = "Inactive"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Status = "Suspended"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Status = "Closed"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Status = "Removed"
-                        });
                 });
 
             modelBuilder.Entity("AuctionCar.Models.Users.Buyer", b =>
@@ -147,17 +104,6 @@ namespace AuctionCar.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Buyers");
-                });
-
-            modelBuilder.Entity("AuctionCar.Models.Auction.Auction", b =>
-                {
-                    b.HasOne("AuctionCar.Models.Auction.AuctionStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Status");
                 });
 #pragma warning restore 612, 618
         }
