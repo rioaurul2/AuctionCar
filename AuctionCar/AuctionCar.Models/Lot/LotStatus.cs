@@ -1,10 +1,10 @@
 ﻿
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace AuctionCar.Models.Auction
+namespace AuctionCar.Models.Lot
 {
-    public class AuctionStatus
+    public class LotStatus
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

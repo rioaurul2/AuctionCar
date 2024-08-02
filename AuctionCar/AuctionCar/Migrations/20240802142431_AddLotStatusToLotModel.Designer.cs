@@ -4,6 +4,7 @@ using AuctionCar.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuctionCar.Migrations
 {
     [DbContext(typeof(AuctionCarContext))]
-    partial class AuctionCarContextModelSnapshot : ModelSnapshot
+    [Migration("20240802142431_AddLotStatusToLotModel")]
+    partial class AddLotStatusToLotModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

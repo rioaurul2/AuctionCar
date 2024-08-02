@@ -19,12 +19,18 @@ namespace AuctionCar.Models.Auction
 
         public string? Description { get; set; }
 
-        public AuctionStatus Status { get; set; }
+        public AuctionStatus? Status { get; set; }
 
         public bool IsHandled;
 
+        public ICollection<Lot.Lot> Lots { get; set; } = new List<Lot.Lot>();
+
         public Auction() {
             Name = string.Empty;
+            StartDate = DateTime.MinValue;
+            EndDate = DateTime.MinValue;
+            CreatedDate = DateTime.MinValue;
+            Description = string.Empty;
         }
     }
 }

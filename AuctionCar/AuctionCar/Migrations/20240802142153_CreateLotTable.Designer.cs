@@ -4,6 +4,7 @@ using AuctionCar.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuctionCar.Migrations
 {
     [DbContext(typeof(AuctionCarContext))]
-    partial class AuctionCarContextModelSnapshot : ModelSnapshot
+    [Migration("20240802142153_CreateLotTable")]
+    partial class CreateLotTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,14 +122,9 @@ namespace AuctionCar.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("StatusId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AuctionId");
-
-                    b.HasIndex("StatusId");
 
                     b.ToTable("Lots");
                 });
@@ -258,13 +256,7 @@ namespace AuctionCar.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AuctionCar.Models.Lot.LotStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId");
-
                     b.Navigation("Auction");
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("AuctionCar.Models.Lot.Vehicle", b =>
