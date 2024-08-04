@@ -17,7 +17,7 @@ namespace AuctionCar.Models.Lot
 
         public LotStatus? Status { get; set; }
 
-        public IEnumerable<Vehicle> Vehicles { get; set; }= new List<Vehicle>();
+        public Vehicle Vehicle { get; set; }
 
         public int AuctionId { get; set; }
 

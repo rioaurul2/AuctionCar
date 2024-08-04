@@ -4,6 +4,7 @@ using AuctionCar.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuctionCar.Migrations
 {
     [DbContext(typeof(AuctionCarContext))]
-    partial class AuctionCarContextModelSnapshot : ModelSnapshot
+    [Migration("20240804133043_CreateVehicleAsociatedTables")]
+    partial class CreateVehicleAsociatedTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -232,12 +235,17 @@ namespace AuctionCar.Migrations
                     b.Property<double?>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("VehicleDetailId")
+                    b.Property<int?>("VehicleDetailsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VehicleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VehicleDetailId");
+                    b.HasIndex("VehicleDetailsId");
+
+                    b.HasIndex("VehicleId");
 
                     b.ToTable("VehicleAccesories");
                 });
@@ -365,13 +373,17 @@ namespace AuctionCar.Migrations
 
             modelBuilder.Entity("AuctionCar.Models.Lot.VehicleAccesory", b =>
                 {
-                    b.HasOne("AuctionCar.Models.Lot.VehicleDetails", "VehicleDetails")
+                    b.HasOne("AuctionCar.Models.Lot.VehicleDetails", null)
                         .WithMany("VehicleAccesoryes")
-                        .HasForeignKey("VehicleDetailId")
+                        .HasForeignKey("VehicleDetailsId");
+
+                    b.HasOne("AuctionCar.Models.Lot.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("VehicleDetails");
+                    b.Navigation("Vehicle");
                 });
 
             modelBuilder.Entity("AuctionCar.Models.Auction.Auction", b =>

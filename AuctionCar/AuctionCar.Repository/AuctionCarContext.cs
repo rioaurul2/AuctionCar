@@ -19,10 +19,20 @@ namespace AuctionCar.Repository
         }
 
         DbSet<Buyer>? Buyers { get; set; }
+
         DbSet<Auction>? Auctions { get; set;}
+
         DbSet<AuctionStatus>? AuctionStatuses { get; set; }
+
         DbSet<Lot>? Lots { get; set; }
+
         DbSet<LotStatus>? LotStatuses { get; set; }
+
+        DbSet<Vehicle>? Vehicles { get; set; }
+
+        DbSet<VehicleAccesory>? VehicleAccesories { get; set; }
+
+        DbSet<VehicleDetails>? VehicleDetails { get; set; }
 
         private void ApplyConfigurations(ModelBuilder modelBuilder)
         {
