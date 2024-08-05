@@ -1,5 +1,6 @@
 ﻿
 using AuctionCar.Models.Auction;
+using AuctionCar.Models.Bid;
 using AuctionCar.Models.Lot;
 using AuctionCar.Models.Users;
 using AuctionCar.Repository.Configurations;
@@ -33,6 +34,8 @@ namespace AuctionCar.Repository
         DbSet<VehicleAccesory>? VehicleAccesories { get; set; }
 
         DbSet<VehicleDetails>? VehicleDetails { get; set; }
+
+        DbSet<Bid>? Bids { get; set; }
 
         private void ApplyConfigurations(ModelBuilder modelBuilder)
         {

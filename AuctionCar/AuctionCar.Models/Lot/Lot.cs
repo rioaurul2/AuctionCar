@@ -23,5 +23,7 @@ namespace AuctionCar.Models.Lot
 
         [ForeignKey("AuctionId")]
         public Auction.Auction? Auction { get; set; }
+
+        public IEnumerable<Bid.Bid>? Bids { get; set; }
     }
 }
