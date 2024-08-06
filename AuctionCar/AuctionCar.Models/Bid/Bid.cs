@@ -26,3 +26,4 @@ namespace AuctionCar.Models.Bid
         public DateTime DateTime { get; set; }
     }
 }
+//rest
