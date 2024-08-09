@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace AuctionCar.Models.Users
 {
-    public class Buyer
+    public class Admin
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -34,7 +35,9 @@ namespace AuctionCar.Models.Users
 
         public DateTime ResetPasswordDate { get; set; }
 
-        public Buyer()
+        public bool IsSuperAdmin { get; set; } = false;
+
+        public Admin()
         {
             FirstName = string.Empty;
             LastName = string.Empty;
@@ -43,7 +46,7 @@ namespace AuctionCar.Models.Users
             Password = string.Empty;
             SaltPassword = string.Empty;
             RegisteredDate = DateTime.UtcNow;
-            ResetPasswordDate = DateTime.UtcNow.AddMonths(6);          
+            ResetPasswordDate = DateTime.UtcNow.AddMonths(6);
         }
     }
 }

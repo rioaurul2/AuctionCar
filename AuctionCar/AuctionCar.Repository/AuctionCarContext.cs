@@ -37,6 +37,8 @@ namespace AuctionCar.Repository
 
         DbSet<Bid>? Bids { get; set; }
 
+        DbSet<Admin>? Admins { get; set; }
+
         private void ApplyConfigurations(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AuctionStatusConfiguration());
